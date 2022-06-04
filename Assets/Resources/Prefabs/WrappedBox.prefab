@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8019219229027088487}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 5401292096124466536}
   m_Layer: 0
   m_Name: Ribbon2
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 5011114111889066293}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 4221198950457799380}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 8061918740959989924}
   m_Layer: 0
   m_Name: WrappedBox
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -430,7 +430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f01626c30068d47a258ef9dcbb915b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 
+  BaseColor: 
+  WantedCube: {fileID: 0}
+  Completed: 0
 --- !u!1 &1548001033004685854
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +447,7 @@ GameObject:
   - component: {fileID: 1699693239827474667}
   m_Layer: 0
   m_Name: Cover
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -537,7 +539,7 @@ GameObject:
   - component: {fileID: 6180644112394222998}
   m_Layer: 0
   m_Name: QuestionMark
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -575,7 +577,7 @@ GameObject:
   - component: {fileID: 7564816505665089715}
   m_Layer: 0
   m_Name: Wall1
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -670,7 +672,7 @@ GameObject:
   - component: {fileID: 2335899146831788025}
   m_Layer: 0
   m_Name: Ribbon3
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -762,7 +764,7 @@ GameObject:
   - component: {fileID: 4651862150435073678}
   m_Layer: 0
   m_Name: WallPivot2
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -794,7 +796,7 @@ GameObject:
   - component: {fileID: 2863714660088307318}
   m_Layer: 0
   m_Name: WallPivot4
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -829,7 +831,7 @@ GameObject:
   - component: {fileID: 2474244175792929293}
   m_Layer: 0
   m_Name: Ribbon4
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -924,7 +926,7 @@ GameObject:
   - component: {fileID: 2990072928379719776}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1019,7 +1021,7 @@ GameObject:
   - component: {fileID: 5849312096053511451}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1114,7 +1116,7 @@ GameObject:
   - component: {fileID: 2245210207326195152}
   m_Layer: 0
   m_Name: Wall3
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1209,7 +1211,7 @@ GameObject:
   - component: {fileID: 2254526453083638324}
   m_Layer: 0
   m_Name: Wall4
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1301,7 +1303,7 @@ GameObject:
   - component: {fileID: 6741335948789100797}
   m_Layer: 0
   m_Name: WallPivot1
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1336,7 +1338,7 @@ GameObject:
   - component: {fileID: 5560052283602108240}
   m_Layer: 0
   m_Name: Wall2
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1428,7 +1430,7 @@ GameObject:
   - component: {fileID: 6204809643442406233}
   m_Layer: 0
   m_Name: WallPivot3
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1463,7 +1465,7 @@ GameObject:
   - component: {fileID: 4890354979229038214}
   m_Layer: 0
   m_Name: Ribbon1
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1558,7 +1560,7 @@ GameObject:
   - component: {fileID: 2152929913501159257}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: WrappedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class WrappedBox : MonoBehaviour
 {
-    public string color;
+    [HideInInspector]
+    public string BaseColor;
+    [HideInInspector]
+    public GameObject WantedCube;
+    [HideInInspector]
+    public bool Completed;
 
     GameObject bottom;
     Transform cover, questionMark;
@@ -29,7 +34,7 @@ public class WrappedBox : MonoBehaviour
 
         reveal = false;
 
-        switch (color)
+        switch (BaseColor)
         {
             case "Red":
                 SetColor(Color.red);
@@ -74,20 +79,22 @@ public class WrappedBox : MonoBehaviour
             else wall.eulerAngles = new Vector3(90, wall.eulerAngles.y, wall.eulerAngles.z);
         }
 
-        Vector3 targetPos = new Vector3(coverTargetPos.x, cover.position.y, coverTargetPos.z);
+        cover.gameObject.SetActive(false);
 
-        if (Vector3.Distance(cover.position, targetPos) <= 0.01f )
-        {
-            cover.position = 
-                Vector3.MoveTowards(cover.position, coverTargetPos, coverSpeed * Time.deltaTime);
-        }
-        else
-        {
-            cover.position = 
-                Vector3.MoveTowards(cover.position, targetPos, coverSpeed * Time.deltaTime);
-        }
+        // Vector3 targetPos = new Vector3(coverTargetPos.x, cover.position.y, coverTargetPos.z);
 
-        if (cover.eulerAngles.y < 40) cover.Rotate(0f, 0.1f, 0f);
+        // if (Vector3.Distance(cover.position, targetPos) <= 0.01f )
+        // {
+        //     cover.position = 
+        //         Vector3.MoveTowards(cover.position, coverTargetPos, coverSpeed * Time.deltaTime);
+        // }
+        // else
+        // {
+        //     cover.position = 
+        //         Vector3.MoveTowards(cover.position, targetPos, coverSpeed * Time.deltaTime);
+        // }
+
+        // if (cover.eulerAngles.y < 40) cover.Rotate(0f, 0.1f, 0f);
     }
 
     void SetColor(Color _color)

@@ -878,4 +878,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1.2
-  RotateSpeed: 150
+  RotateSpeed: 200
