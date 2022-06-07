@@ -22,9 +22,5 @@ public class PickCube : MonoBehaviour
             transform.position = player.Find("PickUpSpot").position;
             transform.rotation = player.rotation;
         }
-        else
-        {
-            transform.position = new Vector3(transform.position.x, player.position.y + (transform.localScale.y / 2), transform.position.z);
-        }
     }
 }

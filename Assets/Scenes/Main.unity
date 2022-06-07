@@ -223,13 +223,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!43 &259873189
+--- !u!4 &274020550 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+  m_PrefabInstance: {fileID: 3611218339186546446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!43 &403834107
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ImageTargetMesh37362
+  m_Name: ImageTargetMesh40068
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -387,11 +392,40 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!4 &290776560 stripped
+--- !u!4 &883325519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6518522067825351924, guid: d11663d58ab75e14db95672f6e19bc93, type: 3}
   m_PrefabInstance: {fileID: 6518522067536754948}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1171890015
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'CardMaterial
+
+    40078'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 1236b4ddcf074576af2a8b214bd85410, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1422484320
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,11 +585,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1481734210 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9189906046820968806, guid: 46c2958d0d0455b4e9a7d7fd445d598e, type: 3}
-  m_PrefabInstance: {fileID: 9189906046477822671}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1720619661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -658,35 +687,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
   m_PrefabInstance: {fileID: 1720619661}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1832260658
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'CardMaterial
-
-    37372'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 1236b4ddcf074576af2a8b214bd85410, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1948847616
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +826,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099548471}
-  m_Mesh: {fileID: 259873189}
+  m_Mesh: {fileID: 403834107}
 --- !u!23 &2099548473
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -846,7 +846,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1832260658}
+  - {fileID: 1171890015}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -968,8 +968,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1481734210}
-  - {fileID: 290776560}
+  - {fileID: 9189906046477822675}
+  - {fileID: 883325519}
+  - {fileID: 274020550}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -984,6 +985,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e6ca9c929c336498b6f71c111861c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &3611218339186546446
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2099548477}
+    m_Modifications:
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806280, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611218339457806284, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
+      propertyPath: m_Name
+      value: MainPlane
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6883a521e63d33d42a438f1db0d9700c, type: 3}
 --- !u!1001 &6518522067536754948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1053,12 +1111,20 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 98451178548025955, guid: 46c2958d0d0455b4e9a7d7fd445d598e, type: 3}
+      propertyPath: plane
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 98451178548025955, guid: 46c2958d0d0455b4e9a7d7fd445d598e, type: 3}
       propertyPath: Gravity
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 98451178548025955, guid: 46c2958d0d0455b4e9a7d7fd445d598e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 98451178548025955, guid: 46c2958d0d0455b4e9a7d7fd445d598e, type: 3}
       propertyPath: RotateSpeed
-      value: 180
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 9189906046820968806, guid: 46c2958d0d0455b4e9a7d7fd445d598e, type: 3}
       propertyPath: m_RootOrder
@@ -1127,3 +1193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8945c0680d67fea48939bfbaf436c5c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &9189906046477822675 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9189906046820968806, guid: 46c2958d0d0455b4e9a7d7fd445d598e, type: 3}
+  m_PrefabInstance: {fileID: 9189906046477822671}
+  m_PrefabAsset: {fileID: 0}

@@ -4,10 +4,14 @@ using System.Collections.Generic;
 
 public class PlayerInteractions : MonoBehaviour
 {
+    Transform player;
+
     bool holding;
 
     void Start()
     {
+        player = GameObject.Find("Player").transform;
+
         holding = false;
     }
 
@@ -33,6 +37,8 @@ public class PlayerInteractions : MonoBehaviour
                     {
                         cubeScript.Picked = false;
                         holding = false;
+
+                        hit.transform.position = new Vector3(player.Find("PickUpSpot").position.x, transform.position.y + (hit.transform.localScale.y / 2), player.Find("PickUpSpot").position.z);
                     } 
                 }
 

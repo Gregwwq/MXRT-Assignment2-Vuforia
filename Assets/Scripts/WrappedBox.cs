@@ -11,21 +11,24 @@ public class WrappedBox : MonoBehaviour
     [HideInInspector]
     public bool Completed;
 
-    GameObject bottom;
+    GameObject bottom, glow;
     Transform cover, questionMark;
     List<Transform> walls =  new List<Transform>();
     
     Vector3 coverTargetPos = new Vector3(-2f, 0f, -3f);
     Vector3 coverTargetRot =  new Vector3(0, 40, 0);
 
-    bool reveal;
-    float coverSpeed = 4f;
+    bool reveal, alreadyGlow;
+
+    float elap = 0;
+    float rotatedAngle;
 
     void Start()
     {
         bottom = transform.Find("Base").gameObject;
         cover = transform.Find("Cover");
         questionMark = transform.Find("QuestionMark");
+        glow = transform.Find("Glow").gameObject;
 
         walls.Add(transform.Find("WallPivot1"));
         walls.Add(transform.Find("WallPivot2"));
@@ -33,6 +36,10 @@ public class WrappedBox : MonoBehaviour
         walls.Add(transform.Find("WallPivot4"));
 
         reveal = false;
+        Completed = false;
+        alreadyGlow = false;
+
+        rotatedAngle = 0f;
 
         switch (BaseColor)
         {
@@ -43,7 +50,7 @@ public class WrappedBox : MonoBehaviour
             case "Green":
                 SetColor(Color.green);
                 break;
-            
+
             case "Blue":
                 SetColor(Color.blue);
                 break;
@@ -56,7 +63,28 @@ public class WrappedBox : MonoBehaviour
 
         if (reveal) Reveal();
 
-        if (Input.GetKeyDown(KeyCode.Space)) OpenBox();
+        if (elap > 1)
+        {
+            OpenBox();
+        }
+        else elap += Time.deltaTime;
+
+        if (Completed)
+        {
+            if (!alreadyGlow)
+            {
+                glow.transform.position = new Vector3(transform.position.x, transform.position.y - 8, transform.position.z);
+                alreadyGlow = true;
+            }
+            glow.SetActive(true);
+        }
+        else
+        {
+            glow.SetActive(false);
+            alreadyGlow = false;
+        }
+
+        glow.transform.position = Vector3.MoveTowards(glow.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z), 6 * Time.deltaTime);
     }
 
     void RotateQuestionMark()
@@ -67,34 +95,20 @@ public class WrappedBox : MonoBehaviour
     public void OpenBox()
     {
         reveal = true;
+        questionMark.gameObject.SetActive(false);
+        cover.gameObject.SetActive(false);
     }
 
     void Reveal()
     {
-        questionMark.gameObject.SetActive(false);
-
         foreach (Transform wall in walls)
         {
-            if (wall.eulerAngles.x < 90) wall.Rotate(0.1f, 0, 0);
-            else wall.eulerAngles = new Vector3(90, wall.eulerAngles.y, wall.eulerAngles.z);
+            if (rotatedAngle < 90f * 4f)
+            {
+                wall.Rotate(1f, 0, 0);
+                rotatedAngle += 1f;
+            } 
         }
-
-        cover.gameObject.SetActive(false);
-
-        // Vector3 targetPos = new Vector3(coverTargetPos.x, cover.position.y, coverTargetPos.z);
-
-        // if (Vector3.Distance(cover.position, targetPos) <= 0.01f )
-        // {
-        //     cover.position = 
-        //         Vector3.MoveTowards(cover.position, coverTargetPos, coverSpeed * Time.deltaTime);
-        // }
-        // else
-        // {
-        //     cover.position = 
-        //         Vector3.MoveTowards(cover.position, targetPos, coverSpeed * Time.deltaTime);
-        // }
-
-        // if (cover.eulerAngles.y < 40) cover.Rotate(0f, 0.1f, 0f);
     }
 
     void SetColor(Color _color)
