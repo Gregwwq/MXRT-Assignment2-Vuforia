@@ -11,6 +11,13 @@ public class WrappedBox : MonoBehaviour
     [HideInInspector]
     public bool Completed;
 
+    [HideInInspector]
+    public string Question;
+    [HideInInspector]
+    public string[] Prompts;
+    [HideInInspector]
+    public int Answer;
+
     GameObject bottom, glow;
     Transform cover, questionMark;
     List<Transform> walls =  new List<Transform>();

@@ -81,8 +81,6 @@ public class GameManager : MonoBehaviour
             GameObject blueCube = Instantiate(BlueCubePrefab, cubePos2, Quaternion.identity);
             GameObject redCube = Instantiate(RedCubePrefab, cubePos3, Quaternion.identity);
 
-            
-
             WrappedBoxes.Add(wrappedBoxRed);
             WrappedBoxes.Add(wrappedBoxGreen);
             WrappedBoxes.Add(wrappedBoxBlue);
