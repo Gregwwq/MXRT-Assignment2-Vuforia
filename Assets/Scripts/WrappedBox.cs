@@ -4,30 +4,18 @@ using UnityEngine;
 
 public class WrappedBox : MonoBehaviour
 {
-    [HideInInspector]
-    public string BaseColor;
-    [HideInInspector]
-    public GameObject WantedCube;
-    [HideInInspector]
-    public bool Completed;
+    public GameObject WantedCube { get; set; }
+    public string BaseColor { get; set; }
+    public bool Completed { get; set; }
+    public int BoxIndex { get; set; }
 
-    [HideInInspector]
-    public string Question;
-    [HideInInspector]
-    public string[] Prompts;
-    [HideInInspector]
-    public int Answer;
+    public bool OpenAlr { get; private set; }
 
     GameObject bottom, glow;
     Transform cover, questionMark;
     List<Transform> walls =  new List<Transform>();
-    
-    Vector3 coverTargetPos = new Vector3(-2f, 0f, -3f);
-    Vector3 coverTargetRot =  new Vector3(0, 40, 0);
 
-    bool reveal, alreadyGlow;
-
-    float elap = 0;
+    bool reveal;
     float rotatedAngle;
 
     void Start()
@@ -44,7 +32,7 @@ public class WrappedBox : MonoBehaviour
 
         reveal = false;
         Completed = false;
-        alreadyGlow = false;
+        OpenAlr = false;
 
         rotatedAngle = 0f;
 
@@ -66,42 +54,39 @@ public class WrappedBox : MonoBehaviour
 
     void Update()
     {
+        OpenBox();
         RotateQuestionMark();
 
         if (reveal) Reveal();
 
-        if (elap > 1)
-        {
-            OpenBox();
-        }
-        else elap += Time.deltaTime;
-
         if (Completed)
         {
-            if (!alreadyGlow)
+            if (glow.transform.localScale.y < 1)
             {
-                glow.transform.position = new Vector3(transform.position.x, transform.position.y - 8, transform.position.z);
-                alreadyGlow = true;
+                Vector3 grow = new Vector3(
+                    glow.transform.localScale.x,
+                    glow.transform.localScale.y + 0.01f,
+                    glow.transform.localScale.z
+                );
+                glow.transform.localScale = grow;
             }
-            glow.SetActive(true);
         }
         else
         {
-            glow.SetActive(false);
-            alreadyGlow = false;
+            glow.transform.localScale = new Vector3(1f, 0f, 1f);
         }
-
-        glow.transform.position = Vector3.MoveTowards(glow.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z), 6 * Time.deltaTime);
     }
 
     void RotateQuestionMark()
     {
-        questionMark.Rotate(0f, 0.1f, 0f);
+        questionMark.Rotate(0f, 0.2f, 0f);
     }
 
     public void OpenBox()
     {
+        OpenAlr = true;
         reveal = true;
+
         questionMark.gameObject.SetActive(false);
         cover.gameObject.SetActive(false);
     }

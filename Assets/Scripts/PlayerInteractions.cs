@@ -28,7 +28,7 @@ public class PlayerInteractions : MonoBehaviour
                 {
                     PickCube cubeScript = hit.transform.gameObject.GetComponent<PickCube>();
                     
-                    if (!holding && !cubeScript.Picked)
+                    if (!holding && !cubeScript.Picked && cubeScript.Pickable)
                     {
                         cubeScript.Picked = true;
                         holding = true;
@@ -42,9 +42,15 @@ public class PlayerInteractions : MonoBehaviour
                     } 
                 }
 
-                if (hit.transform.gameObject.tag == "WrappedBox")
+                else if (hit.transform.gameObject.tag == "WrappedBox")
                 {
-                    
+                    WrappedBox script = hit.transform.gameObject.GetComponent<WrappedBox>();
+                    if (!script.OpenAlr)
+                    {
+                        GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+                        gm.AnsweringQuestion(script.BoxIndex);
+                    }
                 }
             }
         }

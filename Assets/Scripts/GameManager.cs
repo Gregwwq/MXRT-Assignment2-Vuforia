@@ -1,15 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     GameObject WrappedBoxPrefab, GreenCubePrefab, BlueCubePrefab, RedCubePrefab;
+    GameObject joystick, qnPanel;
+
+    Text question, prompt1, prompt2, prompt3;
 
     List<GameObject> WrappedBoxes = new List<GameObject>();
+
     Transform player, plane;
 
     bool setupComplete;
+    int selectedBoxIndex;
+
+    string[] questions = {
+        "What time is our hotel's breakfast buffet available",
+        "How much does our dinner buffet cost",
+        "What is the time period for guests to check in and check out from their rooms"
+    };
+    string[][] prompts = {
+        new string[] {
+            "6am - 10am",
+            "6am - 12pm", 
+            "8am - 12pm"
+        },
+        new string[] {
+            "$45",
+            "$10", 
+            "$70"
+        },
+        new string[] {
+            "6am - 11am",
+            "11am - 2pm", 
+            "10am - 1pm"
+        }
+    };
+    int[] answers = {3, 1, 2};
 
     void Awake()
     {
@@ -20,10 +50,22 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         plane = GameObject.Find("MainPlane").transform;
+        joystick = GameObject.Find("Joystick");
+        qnPanel = GameObject.Find("QnPanel");
+
+        joystick.SetActive(false);
+        qnPanel.SetActive(false);
+
+        question = GameObject.Find("Question").GetComponent<Text>();
+        prompt1 = GameObject.Find("Prompt1").GetComponentInChildren<Text>();
+        prompt2 = GameObject.Find("Prompt2").GetComponentInChildren<Text>();
+        prompt3 = GameObject.Find("Prompt3").GetComponentInChildren<Text>();
 
         plane.position = player.position;
 
         setupComplete = false;
+
+        SetupScene();
     }
 
     void Update()
@@ -87,12 +129,15 @@ public class GameManager : MonoBehaviour
 
             wrappedBoxRed.GetComponent<WrappedBox>().BaseColor = "Red";
             wrappedBoxRed.GetComponent<WrappedBox>().WantedCube = redCube;
+            wrappedBoxRed.GetComponent<WrappedBox>().BoxIndex = 0;
 
             wrappedBoxGreen.GetComponent<WrappedBox>().BaseColor = "Green";
             wrappedBoxGreen.GetComponent<WrappedBox>().WantedCube = greenCube;
+            wrappedBoxGreen.GetComponent<WrappedBox>().BoxIndex = 1;
 
             wrappedBoxBlue.GetComponent<WrappedBox>().BaseColor = "Blue";
             wrappedBoxBlue.GetComponent<WrappedBox>().WantedCube = blueCube;
+            wrappedBoxBlue.GetComponent<WrappedBox>().BoxIndex = 2;
 
             wrappedBoxRed.transform.parent = plane;
             wrappedBoxGreen.transform.parent = plane;
@@ -102,7 +147,66 @@ public class GameManager : MonoBehaviour
             blueCube.transform.parent = plane;
             redCube.transform.parent = plane;
 
+            joystick.SetActive(false);
+
             setupComplete = true;
+        }
+    }
+
+    public void AnsweringQuestion(int index)
+    {   
+        selectedBoxIndex = index;
+
+        SetQuestion();
+
+        joystick.SetActive(false);
+        qnPanel.SetActive(true);
+    }
+
+    void SetQuestion()
+    {
+        question.text = questions[selectedBoxIndex];
+        prompt1.text = prompts[selectedBoxIndex][0];
+        prompt2.text = prompts[selectedBoxIndex][1];
+        prompt3.text = prompts[selectedBoxIndex][2];
+    }
+
+    public void Answer1()
+    {
+        GameObject selectedBox = WrappedBoxes[selectedBoxIndex];
+        WrappedBox script = selectedBox.GetComponent<WrappedBox>();
+
+        if (answers[script.BoxIndex] == 1) script.OpenBox();
+        else
+        {
+            joystick.SetActive(true);
+            qnPanel.SetActive(false);
+        }
+    }
+
+    public void Answer2()
+    {
+        GameObject selectedBox = WrappedBoxes[selectedBoxIndex];
+        WrappedBox script = selectedBox.GetComponent<WrappedBox>();
+
+        if (answers[script.BoxIndex] == 2) script.OpenBox();
+        else
+        {
+            joystick.SetActive(true);
+            qnPanel.SetActive(false);
+        }
+    }
+
+    public void Answer3()
+    {
+        GameObject selectedBox = WrappedBoxes[selectedBoxIndex];
+        WrappedBox script = selectedBox.GetComponent<WrappedBox>();
+
+        if (answers[script.BoxIndex] == 3) script.OpenBox();
+        else
+        {
+            joystick.SetActive(true);
+            qnPanel.SetActive(false);
         }
     }
 }

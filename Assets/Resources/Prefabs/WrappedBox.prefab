@@ -515,6 +515,9 @@ MonoBehaviour:
   BaseColor: 
   WantedCube: {fileID: 0}
   Completed: 0
+  Question: 
+  Prompts: []
+  Answer: 0
 --- !u!1 &1548001033004685854
 GameObject:
   m_ObjectHideFlags: 0
