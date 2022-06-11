@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     GameObject WrappedBoxPrefab, GreenCubePrefab, BlueCubePrefab, RedCubePrefab;
-    GameObject joystick, qnPanel;
+    GameObject joystick, qnPanel, winPanel;
 
     Text question, prompt1, prompt2, prompt3;
 
@@ -52,24 +52,27 @@ public class GameManager : MonoBehaviour
         plane = GameObject.Find("MainPlane").transform;
         joystick = GameObject.Find("Joystick");
         qnPanel = GameObject.Find("QnPanel");
+        winPanel = GameObject.Find("WinPanel");
 
         joystick.SetActive(false);
         qnPanel.SetActive(false);
+        winPanel.SetActive(false);
 
-        question = GameObject.Find("Question").GetComponent<Text>();
-        prompt1 = GameObject.Find("Prompt1").GetComponentInChildren<Text>();
-        prompt2 = GameObject.Find("Prompt2").GetComponentInChildren<Text>();
-        prompt3 = GameObject.Find("Prompt3").GetComponentInChildren<Text>();
+        question = qnPanel.transform.Find("QnMark").Find("Question").gameObject.GetComponent<Text>();
+        prompt1 = qnPanel.transform.Find("Prompts").Find("Prompt1").GetComponentInChildren<Text>();
+        prompt2 = qnPanel.transform.Find("Prompts").Find("Prompt2").GetComponentInChildren<Text>();
+        prompt3 = qnPanel.transform.Find("Prompts").Find("Prompt3").GetComponentInChildren<Text>();
 
         plane.position = player.position;
 
         setupComplete = false;
-
         SetupScene();
     }
 
     void Update()
     {
+        int boxesCompleted = 0;
+
         foreach (GameObject box in WrappedBoxes)
         {
             Transform bottom = box.transform.Find("Base");
@@ -92,6 +95,17 @@ public class GameManager : MonoBehaviour
             {
                 box.GetComponent<WrappedBox>().Completed = false;
             }
+
+            if (box.GetComponent<WrappedBox>().Completed) boxesCompleted++;
+        }
+
+        if (boxesCompleted >= 3)
+        {
+            qnPanel.SetActive(false);
+            joystick.SetActive(false);
+            winPanel.SetActive(true);
+
+            player.gameObject.GetComponent<PlayerMovement>().enabled = false;
         }
     }
 
@@ -105,6 +119,8 @@ public class GameManager : MonoBehaviour
 
     public void SetupScene()
     {
+        joystick.SetActive(true);
+
         if (!setupComplete)
         {
             Vector3 pos1 = new Vector3(player.position.x - 4, player.position.y, player.position.z);
@@ -127,17 +143,26 @@ public class GameManager : MonoBehaviour
             WrappedBoxes.Add(wrappedBoxGreen);
             WrappedBoxes.Add(wrappedBoxBlue);
 
+            wrappedBoxRed.name = "RedWrappedBox";
             wrappedBoxRed.GetComponent<WrappedBox>().BaseColor = "Red";
             wrappedBoxRed.GetComponent<WrappedBox>().WantedCube = redCube;
             wrappedBoxRed.GetComponent<WrappedBox>().BoxIndex = 0;
+            wrappedBoxRed.tag = "RedWrappedBox";
+            SetTag(wrappedBoxRed.transform, "RedWrappedBox");
 
+            wrappedBoxGreen.name = "GreenWrappedBox";
             wrappedBoxGreen.GetComponent<WrappedBox>().BaseColor = "Green";
             wrappedBoxGreen.GetComponent<WrappedBox>().WantedCube = greenCube;
             wrappedBoxGreen.GetComponent<WrappedBox>().BoxIndex = 1;
+            wrappedBoxGreen.tag = "GreenWrappedBox";
+            SetTag(wrappedBoxGreen.transform, "GreenWrappedBox");
 
+            wrappedBoxBlue.name = "BlueWrappedBox";
             wrappedBoxBlue.GetComponent<WrappedBox>().BaseColor = "Blue";
             wrappedBoxBlue.GetComponent<WrappedBox>().WantedCube = blueCube;
             wrappedBoxBlue.GetComponent<WrappedBox>().BoxIndex = 2;
+            wrappedBoxBlue.tag = "BlueWrappedBox";
+            SetTag(wrappedBoxBlue.transform, "BlueWrappedBox");
 
             wrappedBoxRed.transform.parent = plane;
             wrappedBoxGreen.transform.parent = plane;
@@ -147,9 +172,22 @@ public class GameManager : MonoBehaviour
             blueCube.transform.parent = plane;
             redCube.transform.parent = plane;
 
-            joystick.SetActive(false);
-
             setupComplete = true;
+        }
+    }
+
+    public void LostScene()
+    {
+        joystick.SetActive(false);
+        qnPanel.SetActive(false);
+    }
+
+    void SetTag(Transform parent, string tag)
+    {
+        foreach (Transform t in parent)
+        {
+            t.gameObject.tag = tag;
+            SetTag(t, tag);
         }
     }
 
@@ -176,7 +214,12 @@ public class GameManager : MonoBehaviour
         GameObject selectedBox = WrappedBoxes[selectedBoxIndex];
         WrappedBox script = selectedBox.GetComponent<WrappedBox>();
 
-        if (answers[script.BoxIndex] == 1) script.OpenBox();
+        if (answers[script.BoxIndex] == 1)
+        {
+            script.OpenBox();
+            joystick.SetActive(true);
+            qnPanel.SetActive(false);
+        }
         else
         {
             joystick.SetActive(true);
@@ -189,7 +232,12 @@ public class GameManager : MonoBehaviour
         GameObject selectedBox = WrappedBoxes[selectedBoxIndex];
         WrappedBox script = selectedBox.GetComponent<WrappedBox>();
 
-        if (answers[script.BoxIndex] == 2) script.OpenBox();
+        if (answers[script.BoxIndex] == 2)
+        {
+            script.OpenBox();
+            joystick.SetActive(true);
+            qnPanel.SetActive(false);
+        }
         else
         {
             joystick.SetActive(true);
@@ -202,7 +250,12 @@ public class GameManager : MonoBehaviour
         GameObject selectedBox = WrappedBoxes[selectedBoxIndex];
         WrappedBox script = selectedBox.GetComponent<WrappedBox>();
 
-        if (answers[script.BoxIndex] == 3) script.OpenBox();
+        if (answers[script.BoxIndex] == 3)
+        {
+            script.OpenBox();
+            joystick.SetActive(true);
+            qnPanel.SetActive(false);
+        }
         else
         {
             joystick.SetActive(true);

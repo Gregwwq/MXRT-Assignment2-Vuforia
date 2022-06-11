@@ -20,36 +20,36 @@ public class PickCube : MonoBehaviour
         Picked = false;
         Pickable = true;
 
-        top = new Vector3(arrow.position.x, arrow.position.y + 0.15f, arrow.position.z);
-        bot = new Vector3(arrow.position.x, arrow.position.y - 0.15f, arrow.position.z);
-
         up = false;
+
+        top = new Vector3(0f, 1.3f, 0f);
+        bot = new Vector3(0f, 0.7f, 0f);
     }
 
     void Update()
     {
-        MoveArrow();
-
-        float dist = Vector3.Distance(transform.position, player.position);
-        Pickable = dist <= 1.2f ? true : false;
-
-        if (Pickable) arrow.gameObject.SetActive(true);
-        else arrow.gameObject.SetActive(false);
-
         if (Picked)
         {
             transform.position = player.Find("PickUpSpot").position;
             transform.rotation = player.rotation;
         }
+
+        MoveArrow();
+
+        float dist = Vector3.Distance(transform.position, player.position);
+        Pickable = dist <= 1.2f ? true : false;
+
+        if (Pickable && !Picked) arrow.gameObject.SetActive(true);
+        else arrow.gameObject.SetActive(false);
     }
 
     void MoveArrow()
     {
-        if (Vector3.Distance(arrow.position, top) < 0.01f) up = false;
-        if (Vector3.Distance(arrow.position, bot) < 0.01f) up = true;
+        if (Vector3.Distance(arrow.localPosition, top) < 0.01f) up = false;
+        if (Vector3.Distance(arrow.localPosition, bot) < 0.01f) up = true;
 
-        if (up) arrow.position = Vector3.MoveTowards(arrow.position, top, 0.2f * Time.deltaTime);
-        else arrow.position = Vector3.MoveTowards(arrow.position, bot, 0.2f * Time.deltaTime);
+        if (up) arrow.localPosition = Vector3.MoveTowards(arrow.localPosition, top, 0.2f * Time.deltaTime);
+        else arrow.localPosition = Vector3.MoveTowards(arrow.localPosition, bot, 0.2f * Time.deltaTime);
 
         arrow.Rotate(0f, 0.3f, 0f);
     }

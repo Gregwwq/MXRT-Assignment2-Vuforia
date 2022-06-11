@@ -10,9 +10,10 @@ public class WrappedBox : MonoBehaviour
     public int BoxIndex { get; set; }
 
     public bool OpenAlr { get; private set; }
+    public bool WithinRange{ get; private set; }
 
     GameObject bottom, glow;
-    Transform cover, questionMark;
+    Transform cover, questionMark, player;
     List<Transform> walls =  new List<Transform>();
 
     bool reveal;
@@ -20,6 +21,7 @@ public class WrappedBox : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Player").transform;
         bottom = transform.Find("Base").gameObject;
         cover = transform.Find("Cover");
         questionMark = transform.Find("QuestionMark");
@@ -54,12 +56,17 @@ public class WrappedBox : MonoBehaviour
 
     void Update()
     {
-        OpenBox();
         RotateQuestionMark();
 
         if (reveal) Reveal();
 
-        if (Completed)
+        float dist = Vector3.Distance(transform.position, player.position);
+        WithinRange = dist <= 2f ? true : false;
+
+        if (WithinRange && !OpenAlr) questionMark.gameObject.SetActive(true);
+        else questionMark.gameObject.SetActive(false);
+
+        if (Completed && OpenAlr)
         {
             if (glow.transform.localScale.y < 1)
             {

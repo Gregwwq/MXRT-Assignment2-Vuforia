@@ -10,9 +10,13 @@ public class PlayerMovement : MonoBehaviour
 
     Transform cam, plane;
 
-    void Start()
+    void Awake()
     {
         js = FindObjectOfType<Joystick>();
+    }
+
+    void Start()
+    {
         cam = Camera.main.transform;
         plane = GameObject.Find("MainPlane").transform;
     }
@@ -27,11 +31,11 @@ public class PlayerMovement : MonoBehaviour
             Vector3 right = new Vector3(cam.right.x, plane.right.y, cam.right.z);
             Vector3 forward = new Vector3(cam.forward.x, plane.forward.y, cam.forward.z);
 
-            Vector3 move = ((hori * -right) + (vert * -forward)).normalized;            
+            Vector3 move1 = ((hori * -right) + (vert * -forward)).normalized;
+            Vector3 move2 = ((hori * right) + (vert * forward)).normalized;        
 
-            Vector3 move1 = move + plane.position;
-
-            Vector3 move2 = move + transform.position;
+            move1 += plane.position;
+            move2 += transform.position;
 
             plane.position = Vector3.MoveTowards(plane.position, move1, Speed * Time.deltaTime);
 

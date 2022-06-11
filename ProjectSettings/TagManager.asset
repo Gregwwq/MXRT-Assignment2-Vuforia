@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - PickCube
-  - WrappedBox
+  - RedWrappedBox
+  - GreenWrappedBox
+  - BlueWrappedBox
   layers:
   - Default
   - TransparentFX

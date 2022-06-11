@@ -42,10 +42,35 @@ public class PlayerInteractions : MonoBehaviour
                     } 
                 }
 
-                else if (hit.transform.gameObject.tag == "WrappedBox")
+                if (hit.transform.gameObject.tag == "RedWrappedBox")
                 {
-                    WrappedBox script = hit.transform.gameObject.GetComponent<WrappedBox>();
-                    if (!script.OpenAlr)
+                    WrappedBox script = hit.transform.root.Find("MainPlane").Find("RedWrappedBox").gameObject.GetComponent<WrappedBox>();
+
+                    if (!script.OpenAlr && script.WithinRange)
+                    {
+                        GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+                        gm.AnsweringQuestion(script.BoxIndex);
+                    }
+                }
+
+                if (hit.transform.gameObject.tag == "GreenWrappedBox")
+                {
+                    WrappedBox script = hit.transform.root.Find("MainPlane").Find("GreenWrappedBox").gameObject.GetComponent<WrappedBox>();
+
+                    if (!script.OpenAlr && script.WithinRange)
+                    {
+                        GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+                        gm.AnsweringQuestion(script.BoxIndex);
+                    }
+                }
+
+                if (hit.transform.gameObject.tag == "BlueWrappedBox")
+                {
+                    WrappedBox script = hit.transform.root.Find("MainPlane").Find("BlueWrappedBox").gameObject.GetComponent<WrappedBox>();
+
+                    if (!script.OpenAlr && script.WithinRange)
                     {
                         GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
